@@ -4,33 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".NfcActivity">
 
-    <Button
-        android:id="@+id/nfc"
+    <EditText
+        android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btnNfc" />
+        tools:layout_editor_absoluteX="91dp"
+        tools:layout_editor_absoluteY="186dp" />
 
-    <Button
-        android:id="@+id/barCode"
+    <EditText
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/barcode"
-        app:layout_constraintTop_toBottomOf="@+id/nfc" />
+        android:inputType="textPassword"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
 
     <Button
-        android:id="@+id/IBeacon"
+        android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ibeacon"
-        app:layout_constraintTop_toBottomOf="@+id/barCode" />
+        android:onClick="login"
+        android:text="@string/login"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <Button
-        android:id="@+id/captors"
+        android:id="@+id/nfc_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/captors"
-        app:layout_constraintTop_toBottomOf="@+id/IBeacon" />
+        android:onClick="login"
+        android:text="@string/login_with_nfc"
+        app:layout_constraintTop_toBottomOf="@+id/login" />
 
 </android.support.constraint.ConstraintLayout>

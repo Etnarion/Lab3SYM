@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Lab3SYM</string>
+    <string name="login">Login</string>
+    <string name="login_with_nfc">Login with NFC</string>
+    <string name="no_nfc">This device doesn\'t support NFC.</string>
+    <string name="btnNfc">NFC</string>
+    <string name="barcode">QR code</string>
+    <string name="captors">Captors</string>
+    <string name="ibeacon">IBeacon</string>
 </resources>
