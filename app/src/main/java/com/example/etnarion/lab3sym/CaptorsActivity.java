@@ -1,5 +1,11 @@
 package com.example.etnarion.lab3sym;
 
+/*******************************************************************
+ * CaptorsActivity.java
+ * Activity that shows a 3D compass that points north
+ * Authors: Alexandra Korukova and Samuel Mayor
+ ******************************************************************/
+
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -21,14 +27,10 @@ public class CaptorsActivity extends AppCompatActivity implements SensorEventLis
     private Sensor accelerometer;
     private  Sensor magneticSensor;
 
-    private float[] rotationMatrix = {
-            0f, 1f, 0f, 0f,
-            0f, 0f, 1f, 0f,
-            0f, 0f, 0f, 1f
-    };
+    private float[] rotationMatrix = new float[16];
 
-    private float[] gravity = {0f, 0f, 0f};
-    private float[] compass = {0f, 0f, 0f};
+    private float[] gravity;
+    private float[] compass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +57,13 @@ public class CaptorsActivity extends AppCompatActivity implements SensorEventLis
         registerSensors();
     }
 
+    /**
+     * Registers accelerometer and magnetic sensor
+     */
     private void registerSensors() {
         if (sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null) {
             accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-            sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+            sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_GAME);
         } else {
             Toast.makeText(getApplicationContext(), "No accelerometer found",Toast.LENGTH_SHORT).show();
         }
@@ -85,30 +90,22 @@ public class CaptorsActivity extends AppCompatActivity implements SensorEventLis
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (event.accuracy == SensorManager.SENSOR_STATUS_UNRELIABLE)
-            return;
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             gravity = event.values;
         } else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
             compass = event.values;
         }
 
-        if (SensorManager.getRotationMatrix(rotationMatrix, null, gravity, compass)) {
-            rotationMatrix = opglr.swapRotMatrix(rotationMatrix);
+        // Checks if one of the values is null so that the swap doesn't occur
+        // before both values are found
+        if (gravity != null && compass != null) {
+            if (SensorManager.getRotationMatrix(rotationMatrix, null, gravity, compass)) {
+                rotationMatrix = opglr.swapRotMatrix(rotationMatrix);
+            }
         }
     }
 
     @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-    }
-
-    /* TODO */
-    // your activity need to register accelerometer and magnetometer sensors' updates
-    // then you may want to call
-    //  this.opglr.swapRotMatrix()
-    // with the 4x4 rotation matrix, everytime a new matrix is computed
-    // more information on rotation matrix can be found on-line:
-    // https://developer.android.com/reference/android/hardware/SensorManager.html#getRotationMatrix(float[],%20float[],%20float[],%20float[])
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 
 }

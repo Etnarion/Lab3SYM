@@ -1,5 +1,11 @@
 package com.example.etnarion.lab3sym;
 
+/*******************************************************************
+ * MainActivity.java
+ * Main activity that presents a button for each other activity
+ * Authors: Alexandra Korukova and Samuel Mayor
+ ******************************************************************/
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

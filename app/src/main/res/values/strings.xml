@@ -1,10 +1,17 @@
 <resources>
     <string name="app_name">Lab3SYM</string>
     <string name="login">Login</string>
-    <string name="login_with_nfc">Login with NFC</string>
+    <string name="login_with_nfc">Validate with NFC</string>
     <string name="no_nfc">This device doesn\'t support NFC.</string>
     <string name="btnNfc">NFC</string>
     <string name="barcode">QR code</string>
     <string name="captors">Captors</string>
     <string name="ibeacon">IBeacon</string>
+    <string name="no_nfc_found">No NFC found</string>
+    <string name="athenticationsuccess">You are authenticated</string>
+    <string name="scan_bar_code">Scan bar code</string>
+    <string name="auth_medium">Athentication level medium</string>
+    <string name="auth_low">Athentication level low</string>
+    <string name="auth_max">Level</string>
+    <string name="username_admin_npassword_admin">Username : admin Password : admin</string>
 </resources>
